@@ -1,3 +1,3 @@
 ﻿# SituEval
 
-A benchmark that truly possesses an infinite test items, making it even impossible to be saturated.
+A benchmark with a truly infinite number of test items. Say goodbye to benchmark cheaters.
