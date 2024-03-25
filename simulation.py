@@ -7,7 +7,7 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 
 TESTER_SYSTEM = "Question: {question}\nAnswer: {answer}"
-TESTER_AI = "Ask me a question, and I will respond with only '[YES]' or '[NO]', without providing any additional information. If you guessed finally, I will responed with '[GUESSED]' Can you deduce the answer to the question through this method? If you're ready, please ask your first question."
+TESTER_AI = "Ask me a question, and I will respond with only '[YES]' or '[NO]', without providing any additional information. If you guessed finally, I will responed with '[GUESSED]'. Can you deduce the answer to the question through this method? If you're ready, please ask your first question."
 
 TESTEE_SYSTEM = "You are participating in a game where your task is to figure out the answer to a question. You can only ask yes-or-no questions, and the user will respond with only '[YES]' or '[NO]'."
 TESTEE_HUMAN = "{question}"
