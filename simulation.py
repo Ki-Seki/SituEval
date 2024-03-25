@@ -29,6 +29,7 @@ def puzzle_simulation(llm: BaseLanguageModel, question: str, answer: str, max_it
 
     print(f'{question=}, {answer=}')
     it = 0
+    conversation = []
     while True:
         it += 1
         testee_question = llm.invoke(testee_messages)
@@ -39,8 +40,10 @@ def puzzle_simulation(llm: BaseLanguageModel, question: str, answer: str, max_it
         tester_messages.append(tester_response)
         testee_messages.append(HumanMessage(content=tester_response.content))
 
-        print(f'testee={testee_question.content}')
-        print(f'tester={tester_response.content}')
+        print_msg1 = f'testee={testee_question.content}'
+        print_msg2 = f'tester={tester_response.content}'
+        conversation.extend([print_msg1, print_msg2])
+        print(print_msg1, print_msg2, sep='\n')
 
         if GOT_IT in tester_response.content:
             status_code = 0
@@ -51,13 +54,14 @@ def puzzle_simulation(llm: BaseLanguageModel, question: str, answer: str, max_it
             break
 
     return {
-        'timestamp': datetime.now().strftime("%Y-%m-%d-%H-%M-%S"),
+        'timestamp': datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'status_code': status_code,
         'iterations': it,
         'max_it': max_it,
         'llm': llm.dict(),
         'question': question,
         'answer': answer,
+        'conversation': conversation,
         'tester_messages': [dict(msg.to_json()) for msg in tester_messages],
         'testee_messages': [dict(msg.to_json()) for msg in testee_messages],
     }
